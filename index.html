@@ -89,15 +89,7 @@ nav a:hover::after { transform:scaleX(1); }
   font-family:'Cormorant Garamond',serif;font-style:italic;
   font-size:1.1rem;color:var(--gold-light);
 }
-<audio id="bgMusic" loop>
-  <source src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/main/fitterkarma%20-%20Pag-Ibig%20ay%20Kanibalismo%20II.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-document.addEventListener("click", function () {
-  document.getElementById("bgMusic").play();
-}, { once: true });
-</script>
 /* ─── HERO ─── */
 #hero {
   min-height:100vh;
@@ -1501,6 +1493,15 @@ const secObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.4 });
 sections.forEach(s => secObserver.observe(s));
+</script>
+  <audio id="bgMusic" loop>
+  <source src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/main/fitterkarma%20-%20Pag-Ibig%20ay%20Kanibalismo%20II.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("click", function () {
+  document.getElementById("bgMusic").play();
+}, { once: true });
 </script>
 </body>
 </html>
