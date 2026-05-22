@@ -33,8 +33,6 @@ body { background:var(--burgundy-dark); color:var(--text); font-family:'EB Garam
 @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
 @keyframes scaleIn  { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
-@keyframes slideLeft{ from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
-@keyframes slideRight{from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
 @keyframes shimmer  { 0%,100%{opacity:0.4} 50%{opacity:1} }
 @keyframes pulseGold{ 0%,100%{box-shadow:0 0 0 0 rgba(201,169,110,0)} 50%{box-shadow:0 0 0 6px rgba(201,169,110,0.15)} }
 @keyframes scrollLine{
@@ -43,12 +41,9 @@ body { background:var(--burgundy-dark); color:var(--text); font-family:'EB Garam
   51% {transform:scaleY(1);transform-origin:bottom}
   100%{transform:scaleY(0);transform-origin:bottom}
 }
-@keyframes rotateSlow{ from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-@keyframes lineGrow { from{width:0} to{width:100%} }
-@keyframes dotPop { from{transform:scale(0)} to{transform:scale(1)} }
 
-/* ─── NAV — Mobile-first with hamburger ─── */
+/* ─── NAV ─── */
 nav {
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:center;gap:2.2rem;flex-wrap:wrap;
@@ -64,8 +59,7 @@ nav a {
   font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.15em;
   text-transform:uppercase;color:var(--on-burg-dim);text-decoration:none;
   transition:color 0.3s,letter-spacing 0.3s;
-  position:relative;
-  padding:0.3rem 0;
+  position:relative;padding:0.3rem 0;
 }
 nav a::after {
   content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;
@@ -73,14 +67,11 @@ nav a::after {
 }
 nav a:hover { color:var(--gold-light);letter-spacing:0.2em; }
 nav a:hover::after { transform:scaleX(1); }
-
-/* Hamburger button */
 .nav-toggle {
   display:none;
   background:none;border:none;cursor:pointer;
   width:28px;height:24px;padding:0;
-  position:relative;
-  margin-left:auto;
+  position:relative;margin-left:auto;
 }
 .nav-toggle span {
   display:block;position:absolute;left:0;right:0;
@@ -119,12 +110,9 @@ nav a:hover::after { transform:scaleX(1); }
   background:linear-gradient(to bottom,rgba(74,15,26,0.55) 0%,rgba(74,15,26,0.18) 40%,rgba(74,15,26,0.65) 80%,rgba(58,18,24,0.95) 100%);
   z-index:1;
 }
-.botanical-tl,.botanical-br {
-  position:absolute;opacity:0.2;pointer-events:none;z-index:2;
-}
+.botanical-tl,.botanical-br { position:absolute;opacity:0.2;pointer-events:none;z-index:2; }
 .botanical-tl { top:0;left:0;width:300px;animation:fadeIn 2s ease 0.5s both; }
 .botanical-br { bottom:0;right:0;width:300px;transform:rotate(180deg);animation:fadeIn 2s ease 0.8s both; }
-
 .hero-content { position:relative;z-index:3;width:100%;max-width:600px; }
 .hero-label {
   font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.35em;
@@ -134,8 +122,7 @@ nav a:hover::after { transform:scaleX(1); }
 .hero-names {
   font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,9vw,8rem);
   font-weight:300;line-height:1;color:var(--white);
-  animation:fadeUp 1s ease 0.5s both;
-  word-break:break-word;
+  animation:fadeUp 1s ease 0.5s both;word-break:break-word;
 }
 .hero-names .ampersand {
   font-style:italic;font-size:0.72em;color:var(--gold-light);
@@ -205,7 +192,6 @@ section { padding:6rem 2rem; }
 }
 .gold-rule { display:block;width:60px;height:1px;background:var(--gold);margin:0 auto 3rem;opacity:0.6; }
 
-/* scroll-reveal base states */
 .reveal { opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease; }
 .reveal.visible { opacity:1;transform:translateY(0); }
 .reveal-left { opacity:0;transform:translateX(-32px);transition:opacity 0.7s ease,transform 0.7s ease; }
@@ -215,7 +201,6 @@ section { padding:6rem 2rem; }
 .reveal-scale { opacity:0;transform:scale(0.9);transition:opacity 0.6s ease,transform 0.6s ease; }
 .reveal-scale.visible { opacity:1;transform:scale(1); }
 
-/* staggered children */
 .stagger > *:nth-child(1){transition-delay:0s}
 .stagger > *:nth-child(2){transition-delay:0.1s}
 .stagger > *:nth-child(3){transition-delay:0.2s}
@@ -225,7 +210,7 @@ section { padding:6rem 2rem; }
 .stagger > *:nth-child(7){transition-delay:0.6s}
 .stagger > *:nth-child(8){transition-delay:0.7s}
 
-/* ─── LOVE STORY ─── */
+/* ─── LOVE STORY — fixed image rendering ─── */
 #story { background:var(--white); }
 .timeline { position:relative;padding-left:2rem; }
 .timeline::before {
@@ -237,6 +222,7 @@ section { padding:6rem 2rem; }
   opacity:0;transform:translateX(-20px);transition:opacity 0.7s ease,transform 0.7s ease;
 }
 .timeline-item.visible { opacity:1;transform:translateX(0); }
+.timeline-item:last-child { padding-bottom:0; }
 .timeline-dot {
   position:absolute;left:-5px;top:8px;width:11px;height:11px;border-radius:50%;
   background:var(--gold);border:2px solid var(--white);box-shadow:0 0 0 1px var(--gold);
@@ -248,23 +234,43 @@ section { padding:6rem 2rem; }
 }
 .timeline-heading {
   font-family:'Cormorant Garamond',serif;font-size:2rem;
-  font-style:italic;color:var(--burgundy);margin-bottom:0.4rem;
-  line-height:1.2;
+  font-style:italic;color:var(--burgundy);margin-bottom:0.4rem;line-height:1.2;
 }
 .timeline-place { font-family:'EB Garamond',serif;font-size:0.95rem;color:var(--sage);margin-bottom:1.2rem; }
-.img-placeholder {
-  width:100%;max-width:480px;aspect-ratio:16/9;
-  background:linear-gradient(135deg,var(--cream) 0%,#e8e0ce 100%);
-  border:1px dashed var(--cream-dark);border-radius:2px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;
-  transition:opacity 0.3s;
+
+/* Proper image frame */
+.story-img-frame {
+  position:relative;
+  width:100%;max-width:480px;
+  aspect-ratio:4/3;
+  background:var(--cream);
+  border:1px solid var(--cream-dark);
+  padding:8px;
+  box-shadow:0 8px 28px rgba(74,15,26,0.12), 0 2px 6px rgba(74,15,26,0.08);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+  overflow:hidden;
 }
-.img-placeholder:hover { opacity:0.8; }
-.img-placeholder span {
-  font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.15em;
-  color:var(--cream-dark);text-transform:uppercase;
+.story-img-frame:hover {
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:0 14px 36px rgba(74,15,26,0.2), 0 4px 10px rgba(74,15,26,0.1);
 }
-.img-placeholder svg { opacity:0.3; }
+.story-img-frame img {
+  display:block;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform 0.6s ease;
+}
+.story-img-frame:hover img { transform:scale(1.04); }
+.story-img-corner {
+  position:absolute;width:14px;height:14px;
+  border:1px solid var(--gold);
+  z-index:3;opacity:0.6;pointer-events:none;
+}
+.story-img-corner.tl { top:3px;left:3px;border-right:none;border-bottom:none; }
+.story-img-corner.tr { top:3px;right:3px;border-left:none;border-bottom:none; }
+.story-img-corner.bl { bottom:3px;left:3px;border-right:none;border-top:none; }
+.story-img-corner.br { bottom:3px;right:3px;border-left:none;border-top:none; }
 
 /* ─── DETAILS ─── */
 #details { background:var(--burgundy-dark); }
@@ -297,12 +303,9 @@ section { padding:6rem 2rem; }
 }
 .map-link:hover { opacity:0.7; }
 
-/* ─── PROGRAM — centered layout ─── */
+/* ─── PROGRAM ─── */
 #timeline { background:var(--white); }
-.program-list {
-  display:flex;flex-direction:column;align-items:center;gap:0;margin-top:1rem;
-  position:relative;
-}
+.program-list { display:flex;flex-direction:column;align-items:center;gap:0;margin-top:1rem;position:relative; }
 .program-list::before {
   content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;
   background:linear-gradient(to bottom,transparent,rgba(201,169,110,0.35) 10%,rgba(201,169,110,0.35) 90%,transparent);
@@ -317,93 +320,141 @@ section { padding:6rem 2rem; }
 .prog-row.visible { opacity:1;transform:translateY(0); }
 .prog-row.highlight .prog-event-name { color:var(--burgundy);font-weight:500; }
 .prog-row.highlight .prog-node { background:var(--burgundy);box-shadow:0 0 0 4px rgba(107,26,42,0.2); }
-.prog-time-cell {
-  text-align:right;padding-right:2rem;
-  font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.1em;color:var(--gold);
-}
+.prog-time-cell { text-align:right;padding-right:2rem;font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.1em;color:var(--gold); }
 .prog-node {
   width:10px;height:10px;border-radius:50%;background:var(--cream-dark);
   border:2px solid var(--white);box-shadow:0 0 0 1px var(--cream-dark);
   flex-shrink:0;z-index:1;transition:background 0.3s,box-shadow 0.3s;
 }
 .prog-event-cell { padding-left:2rem; }
-.prog-event-name {
-  font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);
-  transition:color 0.3s;
-}
+.prog-event-name { font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);transition:color 0.3s; }
 .prog-row:hover .prog-event-name { color:var(--burgundy); }
 
-/* ─── ENTOURAGE — enhanced compact ─── */
-#entourage { background:var(--burgundy); }
+/* ─── ENTOURAGE — ENHANCED with group titles, dividers, icons ─── */
+#entourage { background:var(--burgundy);position:relative;overflow:hidden; }
+#entourage::before, #entourage::after {
+  content:'';position:absolute;
+  width:280px;height:280px;
+  background-image:radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+#entourage::before { top:-80px;left:-80px; }
+#entourage::after { bottom:-80px;right:-80px; }
 
-/* Parents + Principal row */
-.ent-top-row {
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem;
+.ent-group { position:relative;margin-bottom:3rem; }
+.ent-group:last-child { margin-bottom:0; }
+
+.ent-group-title {
+  font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.3em;
+  color:var(--gold-light);text-transform:uppercase;
+  text-align:center;margin-bottom:1.8rem;
+  position:relative;
 }
-/* Secondary sponsors */
-.ent-secondary {
-  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:2rem;
+.ent-group-title::after {
+  content:'';display:block;width:30px;height:1px;
+  background:rgba(201,169,110,0.4);
+  margin:0.6rem auto 0;
 }
-/* Ceremonial */
-.ent-ceremonial {
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
-  border-top:1px solid rgba(201,169,110,0.2);padding-top:2rem;margin-bottom:2rem;
+
+/* Divider ornament */
+.ent-divider {
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  margin:3rem 0 2rem;
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.8s ease,transform 0.8s ease;
 }
-/* Bearers */
-.ent-bearers {
-  display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;
-  border-top:1px solid rgba(201,169,110,0.2);padding-top:2rem;
+.ent-divider.visible { opacity:1;transform:translateY(0); }
+.ent-divider-line {
+  flex:1;max-width:120px;height:1px;
+  background:linear-gradient(to right, transparent, rgba(201,169,110,0.5));
 }
+.ent-divider-line.right { background:linear-gradient(to left, transparent, rgba(201,169,110,0.5)); }
+.ent-divider-ornament {
+  display:flex;align-items:center;gap:0.6rem;
+  color:var(--gold);
+}
+.ent-divider-ornament svg { width:22px;height:22px;opacity:0.8; }
+.ent-divider-dot { width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:0.7; }
+
+.ent-top-row { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem; }
+.ent-secondary { display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem; }
+.ent-ceremonial { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem; }
+.ent-bearers { display:grid;grid-template-columns:repeat(5,1fr);gap:1rem; }
 
 .ent-card {
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(201,169,110,0.15);
-  padding:1.2rem 1.2rem;
-  transition:background 0.3s,border-color 0.3s,transform 0.3s;
+  padding:1.4rem 1.2rem;
+  transition:background 0.3s,border-color 0.3s,transform 0.3s,box-shadow 0.3s;
   text-align:center;
+  position:relative;
+}
+.ent-card::before {
+  content:'';position:absolute;top:6px;left:6px;
+  width:8px;height:8px;
+  border-top:1px solid rgba(201,169,110,0.3);
+  border-left:1px solid rgba(201,169,110,0.3);
+  transition:border-color 0.3s;
+}
+.ent-card::after {
+  content:'';position:absolute;bottom:6px;right:6px;
+  width:8px;height:8px;
+  border-bottom:1px solid rgba(201,169,110,0.3);
+  border-right:1px solid rgba(201,169,110,0.3);
+  transition:border-color 0.3s;
 }
 .ent-card:hover {
   background:rgba(255,255,255,0.1);
   border-color:rgba(201,169,110,0.4);
   transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
 }
+.ent-card:hover::before, .ent-card:hover::after { border-color:var(--gold); }
+
+.ent-card-icon {
+  display:flex;justify-content:center;
+  margin-bottom:0.5rem;
+  color:var(--gold);opacity:0.6;
+  transition:opacity 0.3s;
+}
+.ent-card-icon svg { width:18px;height:18px; }
+.ent-card:hover .ent-card-icon { opacity:1; }
+
 .ent-card-role {
   font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.2em;
   color:var(--gold);text-transform:uppercase;margin-bottom:0.6rem;
 }
 .ent-card-name {
   font-family:'Cormorant Garamond',serif;font-size:1rem;
-  color:var(--on-burg);line-height:1.5;
+  color:var(--on-burg);line-height:1.55;
 }
-.ent-card-name.deceased::after {
-  content:' †';font-size:0.85em;color:var(--gold);
-}
+.ent-card-name.deceased::after { content:' †';font-size:0.85em;color:var(--gold); }
 .ent-card-meaning {
-  font-family:'EB Garamond',serif;font-style:italic;font-size:0.8rem;
-  color:rgba(201,169,110,0.5);margin-top:0.3rem;margin-bottom:0.5rem;
+  font-family:'EB Garamond',serif;font-style:italic;font-size:0.78rem;
+  color:rgba(201,169,110,0.55);margin-top:0.2rem;margin-bottom:0.6rem;
   display:block;
 }
 .ent-card-name-sm {
-  font-family:'Cormorant Garamond',serif;font-size:0.9rem;
-  color:rgba(248,247,242,0.6);line-height:1.5;
+  font-family:'Cormorant Garamond',serif;font-size:0.92rem;
+  color:rgba(248,247,242,0.65);line-height:1.5;
 }
-/* special bigger card for Best Man / Matron */
-.ent-card.featured { background:rgba(255,255,255,0.08);border-color:rgba(201,169,110,0.25); }
-/* section sub-label */
-.ent-section-label {
-  font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.25em;
-  color:rgba(201,169,110,0.5);text-transform:uppercase;
-  text-align:center;margin-bottom:1rem;
+.ent-card.featured { background:rgba(255,255,255,0.08);border-color:rgba(201,169,110,0.3); }
+.ent-card.featured .ent-card-icon { opacity:0.9; }
+.ent-card.featured .ent-card-name { font-size:1.05rem; }
+
+.ent-name-sep {
+  display:block;width:3px;height:3px;border-radius:50%;
+  background:rgba(201,169,110,0.4);
+  margin:0.3rem auto;
 }
 
-/* ─── DRESS CODE — full landscape with photo ─── */
+/* ─── DRESS CODE ─── */
 #dresscode { background:var(--burgundy-dark);padding:6rem 2rem; }
 .dc-landscape {
   display:flex;flex-direction:column;gap:0;
   border:1px solid rgba(201,169,110,0.2);overflow:hidden;
   background:rgba(107,26,42,0.3);
 }
-/* Top: photo panel */
 .dc-photo-panel {
   position:relative;
   background:linear-gradient(135deg,rgba(107,26,42,0.4) 0%,rgba(58,18,24,0.5) 100%);
@@ -412,65 +463,72 @@ section { padding:6rem 2rem; }
 }
 .dc-photo-panel img {
   display:block;width:100%;height:auto;
-  max-height:560px;
-  object-fit:contain;
-  background:#2a0a14;
+  max-height:560px;object-fit:contain;background:#2a0a14;
 }
-.dc-palette-strip { display:flex;height:6px; }
-.dc-palette-swatch { flex:1; }
-/* Bottom: text columns */
-.dc-text-panel {
-  background:rgba(107,26,42,0.5);
-  padding:2.5rem 2.5rem;
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;
-}
-.dc-col-title {
-  font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;
-  color:var(--gold-light);text-transform:uppercase;margin-bottom:1rem;
-  padding-bottom:0.5rem;border-bottom:1px solid rgba(201,169,110,0.2);
-}
-.dc-intro-note {
-  grid-column:1 / -1;
-  font-family:'EB Garamond',serif;font-style:italic;font-size:1rem;
-  color:var(--on-burg-dim);line-height:1.7;
-  border-left:2px solid rgba(201,169,110,0.3);padding-left:1.2rem;
-  margin-bottom:0.5rem;
-}
-.dc-swatch-list { display:flex;flex-direction:column;gap:0.8rem; }
-.dc-swatch-item { display:flex;align-items:center;gap:0.8rem; }
-.dc-swatches { display:flex;gap:3px;flex-shrink:0; }
-.dc-swatch { width:18px;height:18px;border-radius:50%;border:1px solid rgba(255,255,255,0.1); }
-.dc-swatch-role { font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.1em;color:var(--on-burg-dim);text-transform:uppercase;display:block;margin-bottom:0.1rem; }
-.dc-swatch-label { font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--on-burg); }
 .dc-note-box {
-  grid-column:1 / -1;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(201,169,110,0.2);
-  padding:1rem 1.5rem;margin-top:0.5rem;
-  font-family:'EB Garamond',serif;font-style:italic;font-size:0.95rem;
-  color:rgba(201,169,110,0.7);text-align:center;
+  background:rgba(107,26,42,0.5);
+  padding:1.5rem 2rem;
+  font-family:'EB Garamond',serif;font-style:italic;font-size:1rem;
+  color:rgba(201,169,110,0.85);text-align:center;
+  border-top:1px solid rgba(201,169,110,0.15);
 }
+.dc-note-box strong { color:var(--white);font-weight:500; }
 
-/* ─── GIFTS ─── */
+/* ─── GIFTS — with stock images ─── */
 #gifts { background:var(--white); }
 .gift-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem; }
 .gift-card {
-  background:var(--cream);padding:2.5rem 1.5rem;
+  background:var(--cream);padding:0;
   text-align:center;border:1px solid var(--cream-dark);
   transition:transform 0.3s,box-shadow 0.3s;
+  overflow:hidden;
+  display:flex;flex-direction:column;
 }
-.gift-card:hover { transform:translateY(-5px);box-shadow:0 12px 32px rgba(107,26,42,0.12); }
+.gift-card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 12px 32px rgba(107,26,42,0.15);
+}
+.gift-img-wrap {
+  width:100%;
+  aspect-ratio:5/3;
+  overflow:hidden;
+  position:relative;
+  background:var(--burgundy-dark);
+}
+.gift-img-wrap img {
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 0.6s ease, filter 0.4s ease;
+  filter:brightness(0.95) saturate(0.9);
+}
+.gift-card:hover .gift-img-wrap img {
+  transform:scale(1.08);
+  filter:brightness(1) saturate(1);
+}
+.gift-img-overlay {
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(107,26,42,0) 50%, rgba(74,15,26,0.5) 100%);
+  pointer-events:none;
+}
+.gift-content {
+  padding:0 1.5rem 2rem;
+  display:flex;flex-direction:column;align-items:center;
+  flex:1;
+}
 .gift-icon-wrap {
-  width:52px;height:52px;border-radius:50%;
-  background:var(--burgundy);margin:0 auto 1rem;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--burgundy);margin:-23px auto 1rem;
   display:flex;align-items:center;justify-content:center;
   transition:transform 0.3s;
+  position:relative;z-index:2;
+  border:3px solid var(--cream);
+  box-shadow:0 4px 12px rgba(107,26,42,0.3);
 }
-.gift-card:hover .gift-icon-wrap { transform:scale(1.1); }
+.gift-card:hover .gift-icon-wrap { transform:scale(1.1) rotate(5deg); }
 .gift-icon-wrap svg { stroke:var(--gold-light); }
 .gift-title {
   font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.15em;
-  color:var(--burgundy);text-transform:uppercase;margin-bottom:1.5rem;
+  color:var(--burgundy);text-transform:uppercase;margin-bottom:1.2rem;
 }
 .qr-placeholder {
   width:110px;height:110px;margin:0 auto;
@@ -511,8 +569,7 @@ section { padding:6rem 2rem; }
   font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;
   color:var(--burgundy);cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;
-  transition:color 0.3s;
-  line-height:1.3;
+  transition:color 0.3s;line-height:1.3;
 }
 .faq-q:hover { color:var(--burgundy-light); }
 .faq-chevron { flex-shrink:0;width:20px;height:20px;color:var(--gold);transition:transform 0.3s; }
@@ -523,13 +580,71 @@ section { padding:6rem 2rem; }
   transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1),padding 0.4s ease;
 }
 .faq-item.open .faq-a { max-height:400px;padding-top:1rem; }
-.reminder-pills { display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem; }
-.pill {
-  font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text-light);
-  background:var(--cream);border:1px solid var(--cream-dark);padding:0.7rem 1.5rem;
-  transition:background 0.3s,transform 0.3s;
+
+/* ─── GENTLE REMINDERS — with images ─── */
+.reminders-wrap { margin-top:3rem; }
+.reminders-tag {
+  font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;
+  color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:1.8rem;
 }
-.pill:hover { background:var(--cream-dark);transform:translateY(-2px); }
+.reminders-tag::after {
+  content:'';display:block;width:30px;height:1px;
+  background:var(--gold);opacity:0.5;
+  margin:0.6rem auto 0;
+}
+.reminder-cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.reminder-card {
+  background:var(--cream);
+  border:1px solid var(--cream-dark);
+  padding:0;
+  text-align:center;
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.reminder-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 10px 24px rgba(107,26,42,0.12);
+}
+.reminder-img {
+  width:100%;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  position:relative;
+}
+.reminder-img img {
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 0.6s ease, filter 0.4s ease;
+  filter:brightness(0.95) saturate(0.85);
+}
+.reminder-card:hover .reminder-img img {
+  transform:scale(1.06);
+  filter:brightness(1) saturate(1);
+}
+.reminder-img::after {
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom, transparent 60%, rgba(107,26,42,0.3) 100%);
+  pointer-events:none;
+}
+.reminder-content {
+  padding:1.4rem 1rem 1.6rem;
+  flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.reminder-title {
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.25rem;color:var(--burgundy);line-height:1.3;
+  margin-bottom:0.3rem;
+}
+.reminder-sub {
+  font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.2em;
+  color:var(--gold);text-transform:uppercase;
+}
 
 /* ─── RSVP ─── */
 #rsvp { background:var(--burgundy);text-align:center; }
@@ -562,7 +677,6 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
 @media(max-width:900px){
   .ent-secondary { grid-template-columns:repeat(2,1fr); }
   .ent-bearers { grid-template-columns:repeat(3,1fr); }
-  .dc-text-panel { grid-template-columns:1fr 1fr; }
 }
 
 /* ═══════════════════════════════════════════════ */
@@ -571,12 +685,7 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
 @media(max-width:768px){
   body { font-size:16px; }
 
-  /* NAV — convert to hamburger */
-  nav {
-    padding:0.7rem 1.2rem;
-    justify-content:space-between;
-    align-items:center;
-  }
+  nav { padding:0.7rem 1.2rem;justify-content:space-between;align-items:center; }
   .nav-brand { display:block; }
   .nav-toggle { display:block; }
   .nav-links {
@@ -602,7 +711,6 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   }
   .nav-links a::after { display:none; }
   .nav-links a:hover,.nav-links a:active { color:var(--gold-light);letter-spacing:0.22em; }
-  /* Backdrop when menu open */
   .nav-backdrop {
     position:fixed;inset:0;background:rgba(0,0,0,0.5);
     opacity:0;pointer-events:none;
@@ -610,7 +718,6 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   }
   .nav-backdrop.show { opacity:1;pointer-events:auto; }
 
-  /* HERO */
   #hero { padding:5rem 1.2rem 4rem; }
   .botanical-tl,.botanical-br { width:180px;opacity:0.15; }
   .hero-label { font-size:0.55rem;letter-spacing:0.3em;margin-bottom:1.2rem; }
@@ -623,87 +730,78 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   .countdown-word { font-size:0.48rem;letter-spacing:0.12em; }
   .scroll-hint { bottom:1.2rem; }
 
-  /* SECTIONS */
   section { padding:4.5rem 1.5rem; }
   .gold-rule { margin:0 auto 2rem; }
   .section-subtitle { font-size:1.05rem;margin-bottom:2rem; }
 
-  /* STORY timeline */
-  .timeline { padding-left:0.8rem; }
-  .timeline-item { padding:0 0 3rem 1.8rem; }
-  .timeline-heading { font-size:1.5rem; }
-  .timeline-date { font-size:0.6rem; }
-  .timeline-place { font-size:0.9rem; }
+  /* STORY mobile */
+  .timeline { padding-left:0.7rem; }
+  .timeline-item { padding:0 0 2.8rem 1.6rem; }
+  .timeline-heading { font-size:1.4rem; }
+  .timeline-date { font-size:0.58rem;letter-spacing:0.18em; }
+  .timeline-place { font-size:0.88rem;margin-bottom:1rem; }
+  .story-img-frame { padding:6px;max-width:100%; }
+  .story-img-corner { width:10px;height:10px; }
 
-  /* DETAILS — stack */
   .details-grid { grid-template-columns:1fr; }
   .detail-card { padding:2.2rem 1.5rem; }
-  .detail-card:first-child {
-    border-right:none;
-    border-bottom:1px solid rgba(201,169,110,0.2);
-  }
+  .detail-card:first-child { border-right:none;border-bottom:1px solid rgba(201,169,110,0.2); }
   .detail-card strong { font-size:1.45rem; }
   .detail-card p { font-size:1.1rem; }
   .map-wrap { margin-top:2rem; }
   .map-wrap iframe { height:240px; }
-  .map-caption {
-    padding:1rem 1.2rem;
-    flex-direction:column;align-items:flex-start;gap:0.7rem;
-  }
+  .map-caption { padding:1rem 1.2rem;flex-direction:column;align-items:flex-start;gap:0.7rem; }
   .map-caption span { font-size:0.92rem; }
   .map-link { margin-left:0; }
 
-  /* PROGRAM */
-  .prog-time-cell {
-    font-size:0.58rem;padding-right:0.8rem;letter-spacing:0.08em;
-  }
+  .prog-time-cell { font-size:0.58rem;padding-right:0.8rem;letter-spacing:0.08em; }
   .prog-event-cell { padding-left:0.8rem; }
   .prog-event-name { font-size:1rem;line-height:1.3; }
   .prog-node { width:8px;height:8px; }
   .prog-row { padding:0.95rem 0; }
 
-  /* ENTOURAGE — better mobile grid */
-  .ent-top-row { grid-template-columns:1fr;gap:1rem;margin-bottom:1.5rem; }
-  .ent-secondary { grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem; }
-  .ent-ceremonial { grid-template-columns:1fr;gap:1rem;padding-top:1.5rem;margin-bottom:1.5rem; }
-  .ent-bearers { grid-template-columns:1fr 1fr;gap:0.8rem;padding-top:1.5rem; }
-  .ent-card { padding:1rem 0.9rem; }
+  /* ENTOURAGE mobile */
+  .ent-group { margin-bottom:2rem; }
+  .ent-divider { margin:2rem 0 1.5rem; }
+  .ent-divider-line { max-width:60px; }
+  .ent-divider-ornament svg { width:18px;height:18px; }
+  .ent-group-title { font-size:0.56rem;letter-spacing:0.25em;margin-bottom:1.3rem; }
+  .ent-top-row { grid-template-columns:1fr;gap:1rem; }
+  .ent-secondary { grid-template-columns:1fr 1fr;gap:1rem; }
+  .ent-ceremonial { grid-template-columns:1fr;gap:1rem; }
+  .ent-bearers { grid-template-columns:1fr 1fr;gap:0.8rem; }
+  .ent-card { padding:1.1rem 0.9rem; }
+  .ent-card-icon svg { width:16px;height:16px; }
   .ent-card-role { font-size:0.5rem;letter-spacing:0.18em;margin-bottom:0.5rem; }
   .ent-card-name { font-size:0.95rem; }
   .ent-card-name-sm { font-size:0.85rem; }
   .ent-card-meaning { font-size:0.72rem; }
-  .ent-section-label { font-size:0.5rem;margin-bottom:0.8rem; }
 
-  /* DRESS CODE — stack panels */
   #dresscode { padding:4.5rem 1.2rem; }
   .dc-photo-panel img { max-height:none; }
-  .dc-text-panel {
-    grid-template-columns:1fr;gap:1.5rem;
-    padding:2rem 1.5rem;
-  }
-  .dc-intro-note { padding-left:1rem;font-size:0.95rem; }
-  .dc-col-title { margin-bottom:0.8rem; }
-  .dc-swatch-list { gap:0.7rem; }
-  .dc-swatch { width:16px;height:16px; }
+  .dc-note-box { font-size:0.95rem;padding:1.3rem 1.5rem; }
 
-  /* GIFTS — stack but tighter */
-  .gift-grid { grid-template-columns:1fr;gap:1.2rem;margin-top:1.5rem; }
-  .gift-card { padding:2rem 1.5rem; }
+  .gift-grid { grid-template-columns:1fr;gap:1.5rem;margin-top:1.5rem; }
+  .gift-img-wrap { aspect-ratio:16/9; }
+  .gift-content { padding:0 1.2rem 1.8rem; }
+  .gift-icon-wrap { width:42px;height:42px;margin-top:-21px; }
 
-  /* HASHTAG */
   #hashtag { padding:4rem 1.5rem; }
   .hashtag-text { font-size:1.4rem;margin-bottom:1.2rem; }
   .hashtag-sub { font-size:0.95rem;margin-bottom:1.8rem; }
   .drive-btn { padding:0.95rem 2rem;font-size:0.58rem;letter-spacing:0.18em; }
 
-  /* FAQ */
   .faq-item { padding:1.4rem 0; }
   .faq-q { font-size:1.1rem;gap:0.8rem; }
   .faq-a { font-size:0.98rem; }
-  .reminder-pills { gap:0.7rem; }
-  .pill { font-size:1rem;padding:0.6rem 1.2rem; }
 
-  /* RSVP */
+  /* REMINDERS mobile */
+  .reminders-wrap { margin-top:2.5rem; }
+  .reminder-cards { grid-template-columns:1fr;gap:1.2rem; }
+  .reminder-img { aspect-ratio:16/9; }
+  .reminder-content { padding:1.2rem 1rem 1.5rem; }
+  .reminder-title { font-size:1.2rem; }
+
   .rsvp-btn { padding:1rem 2.5rem;font-size:0.62rem;letter-spacing:0.18em; }
   .rsvp-note { font-size:0.98rem; }
 
@@ -719,7 +817,6 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   body { font-size:15px; }
   section { padding:4rem 1.1rem; }
 
-  /* HERO — tighter */
   #hero { padding:5rem 1rem 3.5rem; }
   .hero-names { font-size:clamp(2.8rem,15vw,4rem); }
   .hero-label { font-size:0.5rem;letter-spacing:0.25em; }
@@ -730,50 +827,38 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   .countdown-label { font-size:0.52rem;letter-spacing:0.2em; }
   .botanical-tl,.botanical-br { width:140px;opacity:0.12; }
 
-  /* SECTION titles */
   .section-tag { font-size:0.52rem;letter-spacing:0.25em; }
   .section-title { font-size:1.85rem; }
 
-  /* STORY */
-  .timeline-heading { font-size:1.3rem; }
-  .timeline-item { padding-bottom:2.4rem; }
+  .timeline-heading { font-size:1.25rem; }
+  .timeline-item { padding-bottom:2.2rem; }
 
-  /* DETAILS */
   .detail-card { padding:1.8rem 1.2rem; }
   .detail-card strong { font-size:1.3rem; }
   .detail-card p { font-size:1rem; }
   .detail-card-title { font-size:0.6rem;letter-spacing:0.18em; }
 
-  /* ENTOURAGE — full single column on tiny screens */
   .ent-secondary { grid-template-columns:1fr; }
   .ent-bearers { grid-template-columns:1fr; }
 
-  /* DRESS CODE */
   #dresscode { padding:4rem 1rem; }
-  .dc-text-panel { padding:1.5rem 1.2rem; }
-  .dc-swatch-label { font-size:0.92rem; }
-  .dc-note-box { font-size:0.88rem;padding:0.9rem 1.1rem; }
+  .dc-note-box { font-size:0.88rem;padding:1rem 1.1rem; }
 
-  /* GIFTS */
-  .gift-card { padding:1.8rem 1.2rem; }
   .qr-placeholder { width:100px;height:100px; }
 
-  /* HASHTAG */
   .hashtag-text { font-size:1.2rem; }
-
-  /* FAQ */
   .faq-q { font-size:1rem; }
   .faq-a { font-size:0.92rem; }
-
-  /* RSVP */
   .rsvp-btn { padding:0.95rem 2rem;font-size:0.58rem; }
+
+  .reminder-title { font-size:1.1rem; }
 }
 
-/* ═══════════════════════════════════════════════ */
-/* ─── Touch — disable hover transforms ─── */
-/* ═══════════════════════════════════════════════ */
 @media(hover:none){
-  .ent-card:hover,.gift-card:hover,.pill:hover,.detail-card:hover { transform:none; }
+  .ent-card:hover,.gift-card:hover,.detail-card:hover,
+  .story-img-frame:hover,.reminder-card:hover { transform:none; }
+  .story-img-frame:hover img,.gift-card:hover .gift-img-wrap img,
+  .reminder-card:hover .reminder-img img { transform:none; }
 }
 </style>
 </head>
@@ -843,7 +928,7 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- LOVE STORY -->
+<!-- LOVE STORY — fixed image rendering -->
 <section id="story">
   <div class="section-inner">
     <p class="section-tag reveal">How it began</p>
@@ -855,8 +940,12 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
         <p class="timeline-date">May 26, 2023</p>
         <h3 class="timeline-heading">"I choose you"</h3>
         <p class="timeline-place">Highest point of Sky Eye, Skyranch Tagaytay</p>
-        <div class="img-placeholder">
-        <img src="https://lakbaypinas.com/wp-content/uploads/2024/12/456480069_929221482594399_722820527813051951_n-3.jpg" alt="Skyranch Tagaytay" width="480" height="350"></img>
+        <div class="story-img-frame">
+          <span class="story-img-corner tl"></span>
+          <span class="story-img-corner tr"></span>
+          <span class="story-img-corner bl"></span>
+          <span class="story-img-corner br"></span>
+          <img src="https://lakbaypinas.com/wp-content/uploads/2024/12/456480069_929221482594399_722820527813051951_n-3.jpg" alt="Sky Eye, Skyranch Tagaytay" loading="lazy">
         </div>
       </div>
       <div class="timeline-item">
@@ -864,8 +953,12 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
         <p class="timeline-date">March 8, 2025</p>
         <h3 class="timeline-heading">"It's a YES"</h3>
         <p class="timeline-place">Heart of the Philippines, Maniwaya Marinduque</p>
-        <div class="img-placeholder">
-          <img src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/refs/heads/main/704132262_1491664925770972_6977822102486157438_n.jpg" alt="Maniwaya Marinduque" width="480" height="350">
+        <div class="story-img-frame">
+          <span class="story-img-corner tl"></span>
+          <span class="story-img-corner tr"></span>
+          <span class="story-img-corner bl"></span>
+          <span class="story-img-corner br"></span>
+          <img src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/refs/heads/main/704132262_1491664925770972_6977822102486157438_n.jpg" alt="Maniwaya Marinduque" loading="lazy">
         </div>
       </div>
       <div class="timeline-item">
@@ -873,9 +966,12 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
         <p class="timeline-date">December 20, 2026</p>
         <h3 class="timeline-heading">"I Do"</h3>
         <p class="timeline-place">Viridis Countryside Garden</p>
-        <div class="img-placeholder">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTElN_Mr6fiegy2BTmtXDzP4-s6vCVS1EoKCQ&s" alt="Maniwaya Marinduque" width="480" height="350">
-        </div>
+        <div class="story-img-frame">
+          <span class="story-img-corner tl"></span>
+          <span class="story-img-corner tr"></span>
+          <span class="story-img-corner bl"></span>
+          <span class="story-img-corner br"></span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTElN_Mr6fiegy2BTmtXDzP4-s6vCVS1EoKCQ&s" alt="Viridis Countryside Garden" loading="lazy">
         </div>
       </div>
     </div>
@@ -914,7 +1010,7 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   </div>
 </section>
 
-<!-- PROGRAM — centered -->
+<!-- PROGRAM -->
 <section id="timeline">
   <div class="section-inner">
     <p class="section-tag reveal">The Day</p>
@@ -960,137 +1056,219 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   </div>
 </section>
 
-<!-- ENTOURAGE — compact enhanced -->
+<!-- ENTOURAGE — ENHANCED -->
 <section id="entourage">
   <div class="section-inner">
     <p class="section-tag reveal" style="color:var(--gold-light)">Those who stand with us</p>
     <h2 class="section-title reveal" style="color:var(--white)">Wedding Entourage</h2>
     <span class="gold-rule reveal" style="opacity:0.3"></span>
 
-    <!-- Parents + Principal Sponsors -->
-    <div class="ent-top-row stagger">
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Parents of the Groom</p>
-        <p class="ent-card-name">Larry Diokno</p>
-        <p class="ent-card-name">Necy Diokno</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Parents of the Bride</p>
-        <p class="ent-card-name deceased">Domingo Cristobal</p>
-        <p class="ent-card-name">Bonifacia Cristobal</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Principal Sponsors</p>
-        <p class="ent-card-name">Martin Zapanta</p>
-        <p class="ent-card-name">Basha Castro</p>
-        <p class="ent-card-name">Juli Cris Tejada</p>
-      </div>
-    </div>
-
-    <!-- Secondary Sponsors -->
-    <div class="ent-secondary stagger">
-      <div class="ent-card featured reveal">
-        <p class="ent-card-role">Best Man</p>
-        <p class="ent-card-name">Ivan Jay Adobas</p>
-      </div>
-      <div class="ent-card featured reveal">
-        <p class="ent-card-role">Matron of Honor</p>
-        <p class="ent-card-name">Geraldine Salvador</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Groomsmen</p>
-        <p class="ent-card-name">Michael Capili</p>
-        <p class="ent-card-name">Kyle Garcia</p>
-        <p class="ent-card-name">Ivan Gener</p>
-        <p class="ent-card-name">John Christian Ikan</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Bridesmaids</p>
-        <p class="ent-card-name">Rowena Base</p>
-        <p class="ent-card-name">Michelle Boco</p>
-        <p class="ent-card-name">Sharlene Manjeron</p>
-        <p class="ent-card-name">Charmain Morishita</p>
+    <!-- GROUP 1 -->
+    <div class="ent-group">
+      <p class="ent-group-title reveal">Parents &amp; Principal Sponsors</p>
+      <div class="ent-top-row stagger">
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <p class="ent-card-role">Parents of the Groom</p>
+          <p class="ent-card-name">Larry Diokno</p>
+          <span class="ent-name-sep"></span>
+          <p class="ent-card-name">Necy Diokno</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <p class="ent-card-role">Parents of the Bride</p>
+          <p class="ent-card-name deceased">Domingo Cristobal</p>
+          <span class="ent-name-sep"></span>
+          <p class="ent-card-name">Bonifacia Cristobal</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17.5 6.5 21 8 13.5 3 9l6.5-.5L12 2z"/></svg>
+          </div>
+          <p class="ent-card-role">Principal Sponsors</p>
+          <p class="ent-card-name">Martin Zapanta</p>
+          <p class="ent-card-name">Basha Castro</p>
+          <p class="ent-card-name">Juli Cris Tejada</p>
+        </div>
       </div>
     </div>
 
-    <!-- Ceremonial Sponsors -->
-    <p class="ent-section-label reveal">Ceremonial Sponsors</p>
-    <div class="ent-ceremonial stagger">
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Candle</p>
-        <span class="ent-card-meaning">to lighten our path</span>
-        <p class="ent-card-name-sm">Bernadette Tuazon</p>
-        <p class="ent-card-name-sm">Mikko Mhar Marca</p>
+    <!-- Divider -->
+    <div class="ent-divider reveal">
+      <div class="ent-divider-line"></div>
+      <div class="ent-divider-ornament">
+        <div class="ent-divider-dot"></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-7 10-7 10h-4z"/></svg>
+        <div class="ent-divider-dot"></div>
       </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Veil</p>
-        <span class="ent-card-meaning">to clothe us as one</span>
-        <p class="ent-card-name-sm">Bernadeth Cristobal</p>
-        <p class="ent-card-name-sm">Jude Sena</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Cord</p>
-        <span class="ent-card-meaning">to bind us together</span>
-        <p class="ent-card-name-sm">Lyka Quilang</p>
-        <p class="ent-card-name-sm">Ni&ntilde;o Gonzaga</p>
+      <div class="ent-divider-line right"></div>
+    </div>
+
+    <!-- GROUP 2 -->
+    <div class="ent-group">
+      <p class="ent-group-title reveal">Secondary Sponsors</p>
+      <div class="ent-secondary stagger">
+        <div class="ent-card featured reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <p class="ent-card-role">Best Man</p>
+          <p class="ent-card-name">Ivan Jay Adobas</p>
+        </div>
+        <div class="ent-card featured reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <p class="ent-card-role">Matron of Honor</p>
+          <p class="ent-card-name">Geraldine Salvador</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="ent-card-role">Groomsmen</p>
+          <p class="ent-card-name">Michael Capili</p>
+          <p class="ent-card-name">Kyle Garcia</p>
+          <p class="ent-card-name">Ivan Gener</p>
+          <p class="ent-card-name">John Christian Ikan</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="ent-card-role">Bridesmaids</p>
+          <p class="ent-card-name">Rowena Base</p>
+          <p class="ent-card-name">Michelle Boco</p>
+          <p class="ent-card-name">Sharlene Manjeron</p>
+          <p class="ent-card-name">Charmain Morishita</p>
+        </div>
       </div>
     </div>
 
-    <!-- Bearers & Flower Girl -->
-    <p class="ent-section-label reveal">Bearers &amp; Flower Girl</p>
-    <div class="ent-bearers stagger">
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Flower Girl</p>
-        <p class="ent-card-name-sm">Hannah Gana</p>
+    <!-- Divider -->
+    <div class="ent-divider reveal">
+      <div class="ent-divider-line"></div>
+      <div class="ent-divider-ornament">
+        <div class="ent-divider-dot"></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2l1.6 5L19 7.5 14.7 11l1.6 5L12 13 7.7 16l1.6-5L5 7.5l5.4-.5L12 2z"/></svg>
+        <div class="ent-divider-dot"></div>
       </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Bible Bearer</p>
-        <p class="ent-card-name-sm">Lucas Alejandro</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Coin Bearer</p>
-        <p class="ent-card-name-sm">Given Heaven Grace Sigua</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Ring Bearer</p>
-        <p class="ent-card-name-sm">Erin Hogan</p>
-      </div>
-      <div class="ent-card reveal">
-        <p class="ent-card-role">Banner Bearers</p>
-        <p class="ent-card-name-sm">Emmanuel Marco Sigua</p>
-        <p class="ent-card-name-sm">Allyna Marie Diokno</p>
+      <div class="ent-divider-line right"></div>
+    </div>
+
+    <!-- GROUP 3 -->
+    <div class="ent-group">
+      <p class="ent-group-title reveal">Ceremonial Sponsors</p>
+      <div class="ent-ceremonial stagger">
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c-1 2-2 3-2 5a2 2 0 0 0 4 0c0-2-1-3-2-5z"/><rect x="9" y="10" width="6" height="11" rx="1"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+          </div>
+          <p class="ent-card-role">Candle</p>
+          <span class="ent-card-meaning">to lighten our path</span>
+          <p class="ent-card-name-sm">Bernadette Tuazon</p>
+          <p class="ent-card-name-sm">Mikko Mhar Marca</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8c4-3 14-3 18 0M3 8c0 6 5 12 9 12s9-6 9-12M3 8v2M21 8v2"/></svg>
+          </div>
+          <p class="ent-card-role">Veil</p>
+          <span class="ent-card-meaning">to clothe us as one</span>
+          <p class="ent-card-name-sm">Bernadeth Cristobal</p>
+          <p class="ent-card-name-sm">Jude Sena</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 6a4 4 0 0 1 8 0v4M8 6v4a4 4 0 0 0 8 0M8 14a4 4 0 0 1 8 0v4M8 14v4a4 4 0 0 0 8 0"/></svg>
+          </div>
+          <p class="ent-card-role">Cord</p>
+          <span class="ent-card-meaning">to bind us together</span>
+          <p class="ent-card-name-sm">Lyka Quilang</p>
+          <p class="ent-card-name-sm">Ni&ntilde;o Gonzaga</p>
+        </div>
       </div>
     </div>
 
+    <!-- Divider -->
+    <div class="ent-divider reveal">
+      <div class="ent-divider-line"></div>
+      <div class="ent-divider-ornament">
+        <div class="ent-divider-dot"></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2C8 6 8 10 12 14C16 10 16 6 12 2z"/><path d="M12 14v8"/></svg>
+        <div class="ent-divider-dot"></div>
+      </div>
+      <div class="ent-divider-line right"></div>
+    </div>
+
+    <!-- GROUP 4 -->
+    <div class="ent-group">
+      <p class="ent-group-title reveal">Bearers &amp; Flower Girl</p>
+      <div class="ent-bearers stagger">
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 6 8 10 12 14C16 10 16 6 12 2z"/><path d="M12 14v8"/></svg>
+          </div>
+          <p class="ent-card-role">Flower Girl</p>
+          <p class="ent-card-name-sm">Hannah Gana</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <p class="ent-card-role">Bible Bearer</p>
+          <p class="ent-card-name-sm">Lucas Alejandro</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <p class="ent-card-role">Coin Bearer</p>
+          <p class="ent-card-name-sm">Given Heaven Grace Sigua</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <p class="ent-card-role">Ring Bearer</p>
+          <p class="ent-card-name-sm">Erin Hogan</p>
+        </div>
+        <div class="ent-card reveal">
+          <div class="ent-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4v16M4 4h12l-3 5 3 5H4"/></svg>
+          </div>
+          <p class="ent-card-role">Banner Bearers</p>
+          <p class="ent-card-name-sm">Emmanuel Marco Sigua</p>
+          <p class="ent-card-name-sm">Allyna Marie Diokno</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- DRESS CODE — landscape with photo -->
+<!-- DRESS CODE -->
 <section id="dresscode">
   <div class="section-inner">
     <p class="section-tag reveal" style="color:var(--gold-light)">What to wear</p>
     <h2 class="section-title reveal" style="color:var(--white)">Wedding Attire Guide</h2>
     <p class="section-subtitle reveal" style="color:var(--on-burg-dim);font-style:italic;">elegant &middot; simple &middot; classic</p>
     <span class="gold-rule reveal" style="opacity:0.3"></span>
-
     <div class="dc-landscape reveal-scale">
-      <!-- TOP: Photo panel -->
       <div class="dc-photo-panel">
-        <img src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/refs/heads/main/701888885_1564061658508674_4750969168781935557_n.jpg"
+        <img src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/refs/heads/main/attires.png"
              alt="Wedding attire guide showing the dress code palette for guests and entourage"
              loading="lazy">
- 
       </div>
-
-      <br>
-          
-        <div class="dc-note-box">Please reserve <strong style="color:var(--white)">white</strong> for the bride only. We can't wait to see everyone beautifully dressed as we celebrate this special day together.</div>
-      </div>
+      <div class="dc-note-box">Please reserve <strong>white</strong> for the bride only. We can't wait to see everyone beautifully dressed as we celebrate this special day together.</div>
     </div>
   </div>
 </section>
 
-<!-- GIFTS -->
+<!-- GIFTS — with stock images -->
 <section id="gifts">
   <div class="section-inner">
     <p class="section-tag reveal">A token of love</p>
@@ -1099,25 +1277,43 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
     <span class="gold-rule reveal"></span>
     <div class="gift-grid stagger">
       <div class="gift-card reveal-scale">
-        <div class="gift-icon-wrap">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div class="gift-img-wrap">
+          <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80" alt="Cozy home" loading="lazy">
+          <div class="gift-img-overlay"></div>
         </div>
-        <p class="gift-title">Future Home Fund</p>
-        <div class="qr-placeholder"><span>QR Code<br>to follow</span></div>
+        <div class="gift-content">
+          <div class="gift-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <p class="gift-title">Future Home Fund</p>
+          <div class="qr-placeholder"><span>QR Code<br>to follow</span></div>
+        </div>
       </div>
       <div class="gift-card reveal-scale">
-        <div class="gift-icon-wrap">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="gift-img-wrap">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80" alt="Family hands" loading="lazy">
+          <div class="gift-img-overlay"></div>
         </div>
-        <p class="gift-title">Future Family Fund</p>
-        <div class="qr-placeholder"><span>QR Code<br>to follow</span></div>
+        <div class="gift-content">
+          <div class="gift-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="gift-title">Future Family Fund</p>
+          <div class="qr-placeholder"><span>QR Code<br>to follow</span></div>
+        </div>
       </div>
       <div class="gift-card reveal-scale">
-        <div class="gift-icon-wrap">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.18 2 2 0 0 1 3.93 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="gift-img-wrap">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Tropical beach honeymoon" loading="lazy">
+          <div class="gift-img-overlay"></div>
         </div>
-        <p class="gift-title">Honeymoon Fund</p>
-        <div class="qr-placeholder"><span>QR Code<br>to follow</span></div>
+        <div class="gift-content">
+          <div class="gift-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.18 2 2 0 0 1 3.93 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <p class="gift-title">Honeymoon Fund</p>
+          <div class="qr-placeholder"><span>QR Code<br>to follow</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1130,7 +1326,7 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
   <a class="drive-btn reveal" href="#" target="_blank">Upload to Google Drive</a>
 </section>
 
-<!-- FAQ -->
+<!-- FAQ — updated order and copy -->
 <section id="faq">
   <div class="section-inner">
     <p class="section-tag reveal">Good to know</p>
@@ -1138,28 +1334,54 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
     <span class="gold-rule reveal"></span>
     <div class="faq-list">
       <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">Can I bring kids?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a">Due to limited seating, only guests named on the invitation are invited. We'd like to keep our wedding solemn &amp; intimate with the most important people in our lives. We'd kindly request NO ADDITIONAL GUESTS OR PLUS ONES. Please refer to the number of guests allotted for you. Thank you for understanding.</div>
+        <div class="faq-q" onclick="toggleFaq(this)">Can I bring a plus one?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a">Due to limited seating, only guests named on the invitation are invited. We'd like to keep our wedding solemn &amp; intimate with the most important people in our lives. We'd kindly request NO ADDITIONAL GUESTS OR PLUS ONES.</div>
       </div>
       <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">Can I bring a plus one?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-q" onclick="toggleFaq(this)">Can I bring kids?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></div>
         <div class="faq-a">To maintain a solemn and intimate atmosphere, our celebration will be an ADULTS-ONLY event. Only children who are part of the entourage are invited to share in our celebration. Thank you for your understanding.</div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">Can I leave early?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a">We have lovingly planned this celebration over the past two years, and it would mean so much to have you stay and celebrate with us until the end of the program. We hope you'll be with us for every moment — especially the fireworks and same-day edit!</div>
+        <div class="faq-a">We have lovingly planned this celebration over the past two (2) years, and it would mean so much to have you stay and celebrate with us until the end of the program.</div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">What if I miss the RSVP deadline?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></div>
-        <div class="faq-a">If we don't receive your RSVP by the specified date, you will not be able to attend — there will be no seat reserved. If you need to update your RSVP, simply send us a message. We appreciate your promptness!</div>
+        <div class="faq-a">If we don't receive your RSVP by the specified date, you will not be able to attend. If you were to show up without submitting an RSVP, there will be no seat for you. If, in case, you need to update your RSVP, simply send us a message.</div>
       </div>
     </div>
-    <div style="margin-top:3rem">
-      <p class="section-tag reveal" style="text-align:left">Gentle Reminders</p>
-      <div class="reminder-pills stagger">
-        <div class="pill reveal">Please be on time</div>
-        <div class="pill reveal">Stay until the end</div>
-        <div class="pill reveal">Have so much fun</div>
+
+    <!-- GENTLE REMINDERS — with stock images -->
+    <div class="reminders-wrap">
+      <p class="reminders-tag reveal">Gentle Reminders</p>
+      <div class="reminder-cards stagger">
+        <div class="reminder-card reveal-scale">
+          <div class="reminder-img">
+            <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&q=80" alt="Vintage pocket watch" loading="lazy">
+          </div>
+          <div class="reminder-content">
+            <p class="reminder-title">Please be on time</p>
+            <p class="reminder-sub">Punctuality</p>
+          </div>
+        </div>
+        <div class="reminder-card reveal-scale">
+          <div class="reminder-img">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Wedding sparklers send-off" loading="lazy">
+          </div>
+          <div class="reminder-content">
+            <p class="reminder-title">Stay until the end</p>
+            <p class="reminder-sub">Send-off awaits</p>
+          </div>
+        </div>
+        <div class="reminder-card reveal-scale">
+          <div class="reminder-img">
+            <img src="https://images.unsplash.com/photo-1530023367847-a683933f4172?w=800&q=80" alt="Champagne toast celebration" loading="lazy">
+          </div>
+          <div class="reminder-content">
+            <p class="reminder-title">Have so much fun</p>
+            <p class="reminder-sub">Celebrate with us</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1187,7 +1409,6 @@ footer { background:var(--brown);padding:3rem 2rem;text-align:center; }
 </footer>
 
 <script>
-/* ── Countdown ── */
 function updateCountdown() {
   const wedding = new Date('2026-12-20T15:00:00+08:00');
   const diff = wedding - new Date();
@@ -1215,7 +1436,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-/* ── Universal scroll reveal ── */
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -1225,14 +1445,12 @@ const revealObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.timeline-item,.prog-row').forEach(el => {
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.timeline-item,.prog-row,.ent-divider').forEach(el => {
   revealObserver.observe(el);
 });
 
-/* ── FAQ ── */
 function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
 
-/* ── Mobile Nav Toggle ── */
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 const navBackdrop = document.getElementById('navBackdrop');
@@ -1256,16 +1474,13 @@ navToggle.addEventListener('click', () => {
   else openNav();
 });
 navBackdrop.addEventListener('click', closeNav);
-/* Close menu when nav link clicked */
 navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', closeNav);
 });
-/* Close on Escape */
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && navLinks.classList.contains('open')) closeNav();
 });
 
-/* ── Nav active highlight ── */
 const sections = document.querySelectorAll('section[id]');
 const allNavLinks = document.querySelectorAll('nav a');
 const secObserver = new IntersectionObserver(entries => {
