@@ -303,6 +303,177 @@ section { padding:6rem 2rem; }
 }
 .map-link:hover { opacity:0.7; }
 
+/* ─── PRENUP — slideshow ─── */
+#prenup {
+  background:var(--white);
+  position:relative;
+  overflow:hidden;
+}
+#prenup::before, #prenup::after {
+  content:'';position:absolute;
+  width:280px;height:280px;
+  background-image:radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+#prenup::before { top:-60px;left:-60px; }
+#prenup::after { bottom:-60px;right:-60px; }
+
+.prenup-wrap {
+  max-width:760px;
+  margin:1.5rem auto 0;
+  position:relative;
+}
+
+/* Slideshow container — matching story image frame style */
+.prenup-slideshow {
+  position:relative;
+  width:100%;
+  aspect-ratio:3/2;
+  background:var(--cream);
+  border:1px solid var(--cream-dark);
+  padding:10px;
+  box-shadow:0 12px 40px rgba(74,15,26,0.18), 0 4px 12px rgba(74,15,26,0.1);
+  overflow:hidden;
+}
+/* Gold corner ornaments */
+.prenup-corner {
+  position:absolute;width:16px;height:16px;
+  border:1px solid var(--gold);
+  z-index:5;opacity:0.65;pointer-events:none;
+}
+.prenup-corner.tl { top:4px;left:4px;border-right:none;border-bottom:none; }
+.prenup-corner.tr { top:4px;right:4px;border-left:none;border-bottom:none; }
+.prenup-corner.bl { bottom:4px;left:4px;border-right:none;border-top:none; }
+.prenup-corner.br { bottom:4px;right:4px;border-left:none;border-top:none; }
+
+/* Slide track */
+.prenup-track {
+  position:relative;
+  width:100%;height:100%;
+  overflow:hidden;
+}
+.prenup-slide {
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+}
+.prenup-slide.active { opacity:1;z-index:2; }
+.prenup-slide img {
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+/* Caption overlay */
+.prenup-slide-caption {
+  position:absolute;left:0;right:0;bottom:0;
+  padding:1.4rem 1.6rem 1.2rem;
+  background:linear-gradient(to top, rgba(74,15,26,0.78) 0%, rgba(74,15,26,0.4) 60%, transparent 100%);
+  color:var(--white);
+  text-align:center;
+  pointer-events:none;
+}
+.prenup-slide-caption-text {
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.1rem;
+  color:var(--white);
+  text-shadow:0 2px 8px rgba(0,0,0,0.5);
+  margin-bottom:0.2rem;
+}
+.prenup-slide-caption-num {
+  font-family:'Cinzel',serif;
+  font-size:0.5rem;letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  opacity:0.9;
+}
+
+/* Navigation arrows */
+.prenup-nav-btn {
+  position:absolute;top:50%;
+  transform:translateY(-50%);
+  width:42px;height:42px;
+  background:rgba(74,15,26,0.65);
+  border:1px solid rgba(201,169,110,0.4);
+  color:var(--gold-light);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  z-index:10;
+  transition:all 0.3s ease;
+  border-radius:50%;
+}
+.prenup-nav-btn:hover {
+  background:var(--burgundy);
+  border-color:var(--gold);
+  color:var(--white);
+  transform:translateY(-50%) scale(1.08);
+}
+.prenup-nav-btn.prev { left:18px; }
+.prenup-nav-btn.next { right:18px; }
+.prenup-nav-btn svg { width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2; }
+
+/* Dots indicator */
+.prenup-dots {
+  display:flex;justify-content:center;gap:0.7rem;
+  margin-top:1.6rem;
+}
+.prenup-dot {
+  width:8px;height:8px;
+  border-radius:50%;
+  background:rgba(107,26,42,0.2);
+  border:none;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  padding:0;
+}
+.prenup-dot:hover { background:rgba(107,26,42,0.45); }
+.prenup-dot.active {
+  background:var(--gold);
+  width:24px;
+  border-radius:4px;
+  box-shadow:0 0 0 1px var(--gold-light);
+}
+
+/* Counter */
+.prenup-counter {
+  font-family:'Cinzel',serif;
+  font-size:0.55rem;letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--gold);
+  text-align:center;
+  margin-top:1rem;
+  opacity:0.8;
+}
+.prenup-counter strong {
+  font-weight:600;color:var(--burgundy);
+}
+
+/* Mobile adjustments */
+@media(max-width:768px) {
+  .prenup-slideshow { padding:7px; }
+  .prenup-corner { width:11px;height:11px; }
+  .prenup-corner.tl, .prenup-corner.tr { top:3px; }
+  .prenup-corner.tl, .prenup-corner.bl { left:3px; }
+  .prenup-corner.tr, .prenup-corner.br { right:3px; }
+  .prenup-corner.bl, .prenup-corner.br { bottom:3px; }
+  .prenup-nav-btn { width:36px;height:36px; }
+  .prenup-nav-btn.prev { left:10px; }
+  .prenup-nav-btn.next { right:10px; }
+  .prenup-nav-btn svg { width:14px;height:14px; }
+  .prenup-slide-caption { padding:1rem 1.2rem 0.9rem; }
+  .prenup-slide-caption-text { font-size:0.95rem; }
+  .prenup-dots { gap:0.55rem;margin-top:1.2rem; }
+}
+@media(max-width:480px) {
+  .prenup-nav-btn { width:32px;height:32px; }
+  .prenup-slide-caption-text { font-size:0.88rem; }
+  .prenup-slide-caption-num { font-size:0.45rem; }
+}
+@media(hover:none) {
+  .prenup-nav-btn:hover { transform:translateY(-50%); }
+}
+
 /* ─── PROGRAM ─── */
 #timeline { background:var(--white); }
 .program-list { display:flex;flex-direction:column;align-items:center;gap:0;margin-top:1rem;position:relative; }
@@ -1188,6 +1359,7 @@ audio.player-audio::-webkit-media-controls-panel {
   <div class="nav-links" id="navLinks">
     <a href="#story">Story</a>
     <a href="#details">Details</a>
+    <a href="#prenup">Prenup</a>
     <a href="#timeline">Program</a>
     <a href="#entourage">Entourage</a>
     <a href="#dresscode">Attire</a>
@@ -1325,6 +1497,82 @@ audio.player-audio::-webkit-media-controls-panel {
         <span>A. Mabini St, Amadeo, 4119 Cavite, Philippines &nbsp;&middot;&nbsp; +63 917 156 7828</span>
         <a class="map-link" href="https://maps.google.com/?q=Viridis+Countryside+Garden+Amadeo+Cavite" target="_blank">Open in Maps</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENUP — slideshow -->
+<section id="prenup">
+  <div class="section-inner">
+    <p class="section-tag reveal">A glimpse of us</p>
+    <h2 class="section-title reveal">Prenup</h2>
+    <p class="section-subtitle reveal">Moments captured before forever begins</p>
+    <span class="gold-rule reveal"></span>
+
+    <div class="prenup-wrap reveal-scale">
+      <div class="prenup-slideshow">
+        <span class="prenup-corner tl"></span>
+        <span class="prenup-corner tr"></span>
+        <span class="prenup-corner bl"></span>
+        <span class="prenup-corner br"></span>
+
+        <div class="prenup-track" id="prenupTrack">
+          <div class="prenup-slide active" data-index="0">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80" alt="Prenup moment 1" loading="lazy">
+            <div class="prenup-slide-caption">
+              <p class="prenup-slide-caption-text">The promise of forever</p>
+              <p class="prenup-slide-caption-num">01 / 05</p>
+            </div>
+          </div>
+          <div class="prenup-slide" data-index="1">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=1200&q=80" alt="Prenup moment 2" loading="lazy">
+            <div class="prenup-slide-caption">
+              <p class="prenup-slide-caption-text">Where it all began</p>
+              <p class="prenup-slide-caption-num">02 / 05</p>
+            </div>
+          </div>
+          <div class="prenup-slide" data-index="2">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80" alt="Prenup moment 3" loading="lazy">
+            <div class="prenup-slide-caption">
+              <p class="prenup-slide-caption-text">Two hearts, one journey</p>
+              <p class="prenup-slide-caption-num">03 / 05</p>
+            </div>
+          </div>
+          <div class="prenup-slide" data-index="3">
+            <img src="https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=1200&q=80" alt="Prenup moment 4" loading="lazy">
+            <div class="prenup-slide-caption">
+              <p class="prenup-slide-caption-text">A love story, ours</p>
+              <p class="prenup-slide-caption-num">04 / 05</p>
+            </div>
+          </div>
+          <div class="prenup-slide" data-index="4">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80" alt="Prenup moment 5" loading="lazy">
+            <div class="prenup-slide-caption">
+              <p class="prenup-slide-caption-text">Counting down to I do</p>
+              <p class="prenup-slide-caption-num">05 / 05</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="prenup-nav-btn prev" id="prenupPrev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="prenup-nav-btn next" id="prenupNext" aria-label="Next photo">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="prenup-dots" id="prenupDots">
+        <button class="prenup-dot active" data-index="0" aria-label="Photo 1"></button>
+        <button class="prenup-dot" data-index="1" aria-label="Photo 2"></button>
+        <button class="prenup-dot" data-index="2" aria-label="Photo 3"></button>
+        <button class="prenup-dot" data-index="3" aria-label="Photo 4"></button>
+        <button class="prenup-dot" data-index="4" aria-label="Photo 5"></button>
+      </div>
+
+      <p class="prenup-counter">
+        Photo <strong id="prenupCurrent">1</strong> of <strong>5</strong>
+      </p>
     </div>
   </div>
 </section>
@@ -1578,7 +1826,7 @@ audio.player-audio::-webkit-media-controls-panel {
     <span class="gold-rule reveal" style="opacity:0.3"></span>
     <div class="dc-landscape reveal-scale">
       <div class="dc-photo-panel">
-        <img src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/refs/heads/main/attires.png"
+        <img src="https://raw.githubusercontent.com/Nesura26/NeslerandAnneWedding/refs/heads/main/701888885_1564061658508674_4750969168781935557_n.jpg"
              alt="Wedding attire guide showing the dress code palette for guests and entourage"
              loading="lazy">
       </div>
@@ -1990,6 +2238,95 @@ playerAudio.addEventListener('ended', nextSong);
 /* Init */
 buildPlaylist();
 loadSong(songIndex);
+
+/* ════════════════════════════════════════════
+   PRENUP SLIDESHOW
+════════════════════════════════════════════ */
+(function() {
+  const slides = document.querySelectorAll('.prenup-slide');
+  const dots = document.querySelectorAll('.prenup-dot');
+  const prevBtn = document.getElementById('prenupPrev');
+  const nextBtn = document.getElementById('prenupNext');
+  const counter = document.getElementById('prenupCurrent');
+  const track = document.getElementById('prenupTrack');
+
+  if (!slides.length) return;
+
+  let current = 0;
+  let autoplayTimer = null;
+  const AUTOPLAY_MS = 5000;
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('active', i === current));
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    if (counter) counter.textContent = current + 1;
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(next, AUTOPLAY_MS);
+  }
+  function stopAutoplay() {
+    if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
+  }
+  function restartAutoplay() {
+    stopAutoplay();
+    setTimeout(startAutoplay, 100);
+  }
+
+  nextBtn.addEventListener('click', () => { next(); restartAutoplay(); });
+  prevBtn.addEventListener('click', () => { prev(); restartAutoplay(); });
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.dataset.index, 10));
+      restartAutoplay();
+    });
+  });
+
+  /* Pause autoplay on hover (desktop) */
+  track.addEventListener('mouseenter', stopAutoplay);
+  track.addEventListener('mouseleave', startAutoplay);
+
+  /* Touch swipe support */
+  let touchStartX = 0;
+  let touchEndX = 0;
+  track.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopAutoplay();
+  }, { passive: true });
+  track.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next(); else prev();
+    }
+    restartAutoplay();
+  }, { passive: true });
+
+  /* Keyboard navigation when prenup is in view */
+  document.addEventListener('keydown', e => {
+    const prenupSection = document.getElementById('prenup');
+    if (!prenupSection) return;
+    const rect = prenupSection.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!inView) return;
+    if (e.key === 'ArrowRight') { next(); restartAutoplay(); }
+    if (e.key === 'ArrowLeft') { prev(); restartAutoplay(); }
+  });
+
+  /* Start autoplay only when slideshow scrolls into view (perf) */
+  const slideObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) startAutoplay();
+      else stopAutoplay();
+    });
+  }, { threshold: 0.3 });
+  slideObserver.observe(track);
+})();
 </script>
 </body>
 </html>
